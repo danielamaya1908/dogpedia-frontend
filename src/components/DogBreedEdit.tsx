@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 // Importa el video local
-import dogVideo from '../images/202576-918431455.mp4';
+import dogVideo from '../assets/media/202576-918431455.mp4';
 
 const DogBreedEdit: React.FC = () => {
     const [name, setName] = useState('');

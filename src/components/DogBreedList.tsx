@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import backgroundImage from '../images/IMG-20240511-WA0041.jpg'; // Imagen de fondo
+import backgroundImage from '../assets/img/IMG-20240511-WA0041.jpg'; // Imagen de fondo
 
 // Define el tipo de datos para las razas de perros
 interface DogBreed {
@@ -22,11 +22,8 @@ const DogBreedList: React.FC = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
 
-    useEffect(() => {
-        fetchDogBreeds();
-    }, [page, searchTerm, selectedFilter]);
-
-    const fetchDogBreeds = async () => {
+    // Memoriza la función fetchDogBreeds
+    const fetchDogBreeds = useCallback(async () => {
         try {
             const response = await axios.get('http://localhost:3000/api/dogbreeds', {
                 params: {
@@ -41,7 +38,12 @@ const DogBreedList: React.FC = () => {
         } catch (error) {
             console.error('Error fetching dog breeds:', error);
         }
-    };
+    }, [page, searchTerm, selectedFilter]);
+
+    // Añade fetchDogBreeds a las dependencias
+    useEffect(() => {
+        fetchDogBreeds();
+    }, [fetchDogBreeds]);
 
     const handleDelete = async (id: string) => {
         try {

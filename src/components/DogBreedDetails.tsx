@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import dogBackground from '../images/vertical-shot-white-brown-dog-with-red-leash-green-grass.jpg'; // Asegúrate de tener esta imagen
+import dogBackground from '../assets/img//vertical-shot-white-brown-dog-with-red-leash-green-grass.jpg'; // Asegúrate de tener esta imagen
 
 // Define el tipo de datos para una raza de perro
 interface DogBreed {
